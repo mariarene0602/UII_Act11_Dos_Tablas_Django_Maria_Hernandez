@@ -1,0 +1,107 @@
+/* app_cliente/static/css/styles.css */
+body {
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: #e9ecef; /* Un gris claro suave */
+    color: #343a40;
+}
+
+.navbar-brand {
+    font-weight: 700; /* Más negrita */
+    letter-spacing: 1px;
+}
+
+.navbar-nav .nav-link {
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+    color: var(--bs-white) !important; /* Color para activo/hover en navbar oscura */
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 0.3rem;
+}
+
+.bg-primary {
+    background-color: #6c757d !important; /* Un azul más suave, o puedes cambiarlo a tu color deseado */
+}
+
+.card {
+    border-radius: 0.75rem; /* Bordes más redondeados */
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.08); /* Sombra más pronunciada */
+    border: none;
+}
+
+.card-header {
+    border-top-left-radius: 0.75rem;
+    border-top-right-radius: 0.75rem;
+    padding: 1rem 1.5rem;
+    font-weight: 600;
+}
+
+.card-img-top {
+    border-top-left-radius: 0.75rem;
+    border-top-right-radius: 0.75rem;
+}
+
+.form-control,
+.form-select,
+.btn {
+    border-radius: 0.375rem; /* Bordes suaves para controles de formulario y botones */
+}
+
+.btn-primary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.btn-primary:hover {
+    background-color: #5a6268;
+    border-color: #5a6268;
+}
+
+/* Estilo para los mensajes de error de Django bajo los campos */
+.alert-danger.mt-1 {
+    font-size: 0.875em;
+    padding: 0.5rem 0.75rem;
+    margin-top: 0.25rem !important;
+    margin-bottom: 0 !important;
+}
+
+/* Opcional: Centrar imagen en detalle de perro si no ocupa todo el espacio */
+.card .col-md-4 img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%; /* Asegura que la imagen no se desborde */
+    height: auto;
+}
+
+/* Ajustes para el badge de número de perros */
+.badge {
+    padding: 0.5em 0.75em;
+    font-size: 0.85em;
+    min-width: 30px; /* Asegura un tamaño mínimo */
+}
+
+/* Color de fondo para alerts de información */
+.alert-info {
+    background-color: #e0f7fa; /* Un azul muy claro */
+    border-color: #b2ebf2;
+    color: #006064;
+}
+.alert-warning {
+    background-color: #fff8e1;
+    border-color: #ffe082;
+    color: #ff8f00;
+}
+.alert-danger {
+    background-color: #ffebee;
+    border-color: #ef9a9a;
+    color: #c62828;
+}
+
+/* Ajustes para los enlaces en tarjetas */
+.card-body a.text-decoration-none {
+    font-weight: 600;
+}

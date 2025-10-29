@@ -1,0 +1,39 @@
+<!-- app_cliente/templates/app_cliente/detalle_perro.html -->
+{% extends 'app_cliente/base.html' %}
+{% load static %}
+
+{% block titulo %}Detalle de Perro{% endblock %}
+
+{% block contenido %}
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="display-6">Detalle del Perro: <span class="text-primary">{{ perro.nombre }}</span></h1>
+        <div>
+            <a href="{% url 'editar_perro' perro.pk %}" class="btn btn-warning me-2"><i class="fas fa-edit me-1"></i> Editar Perro</a>
+            <a href="{% url 'borrar_perro' perro.pk %}" class="btn btn-danger"><i class="fas fa-trash-alt me-1"></i> Borrar Perro</a>
+        </div>
+    </div>
+
+    <div class="card shadow-sm mb-4">
+        <div class="row g-0">
+            <div class="col-md-4">
+                {% if perro.foto %}
+                    <img src="{{ perro.foto.url }}" class="img-fluid rounded-start h-100" alt="Foto de {{ perro.nombre }}" style="object-fit: cover;">
+                {% else %}
+                    <img src="{% static 'img/default_dog.png' %}" class="img-fluid rounded-start h-100" alt="Sin foto" style="object-fit: cover;">
+                {% endif %}
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h3 class="card-title text-primary fw-bold mb-3">{{ perro.nombre }}</h3>
+                    <p class="card-text mb-2"><strong>Raza:</strong> {{ perro.raza|default:"Desconocida" }}</p>
+                    <p class="card-text mb-2"><strong>Fecha de Nacimiento:</strong> {{ perro.fecha_nacimiento|date:"d M Y"|default:"No especificada" }}</p>
+                    <p class="card-text mb-2"><strong>Temperamento:</strong> {{ perro.temperamento|default:"No especificado" }}</p>
+                    <p class="card-text mb-2"><strong>Dueño:</strong> <a href="{% url 'detalle_cliente' perro.cliente.pk %}" class="text-decoration-none text-info">{{ perro.cliente.nombre }} {{ perro.cliente.apellido }}</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer text-end">
+            <a href="{% url 'listar_perros' %}" class="btn btn-secondary"><i class="fas fa-arrow-left me-1"></i> Volver a la lista de Perros</a>
+        </div>
+    </div>
+{% endblock %}

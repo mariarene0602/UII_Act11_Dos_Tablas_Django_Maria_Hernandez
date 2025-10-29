@@ -1,0 +1,50 @@
+<!-- app_cliente/templates/app_cliente/listar_perros.html -->
+{% extends 'app_cliente/base.html' %}
+{% load static %}
+
+{% block titulo %}Lista de Perros{% endblock %}
+
+{% block contenido %}
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="display-6">Perros Registrados</h1>
+        <a href="{% url 'crear_perro' %}" class="btn btn-success">
+            <i class="fas fa-dog me-1"></i> Registrar Nuevo Perro
+        </a>
+    </div>
+
+    {% if perros %}
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        {% for perro in perros %}
+        <div class="col">
+            <div class="card h-100 shadow-sm">
+                {% if perro.foto %}
+                    <img src="{{ perro.foto.url }}" class="card-img-top img-fluid" alt="Foto de {{ perro.nombre }}" style="height: 200px; object-fit: cover;">
+                {% else %}
+                    <img src="{% static 'img/default_dog.png' %}" class="card-img-top img-fluid" alt="Sin foto" style="height: 200px; object-fit: cover;">
+                {% endif %}
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title text-primary fw-bold">{{ perro.nombre }}</h5>
+                    <p class="card-text mb-1"><strong>Raza:</strong> {{ perro.raza|default:"Desconocida" }}</p>
+                    <p class="card-text mb-1"><strong>Cliente:</strong> <a href="{% url 'detalle_cliente' perro.cliente.pk %}" class="text-decoration-none">{{ perro.cliente.nombre }} {{ perro.cliente.apellido }}</a></p>
+                    <p class="card-text"><small class="text-muted">Nacimiento: {{ perro.fecha_nacimiento|default:"N/A" }}</small></p>
+                    <div class="mt-auto d-flex justify-content-between align-items-center">
+                        <a href="{% url 'detalle_perro' perro.pk %}" class="btn btn-outline-info btn-sm"><i class="fas fa-info-circle me-1"></i> Ver Detalle</a>
+                        <div>
+                            <a href="{% url 'editar_perro' perro.pk %}" class="btn btn-outline-warning btn-sm me-1"><i class="fas fa-edit"></i></a>
+                            <a href="{% url 'borrar_perro' perro.pk %}" class="btn btn-outline-danger btn-sm"><i class="fas fa-trash-alt"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="alert alert-info text-center" role="alert">
+        <h4 class="alert-heading"><i class="fas fa-info-circle me-2"></i>¡No hay perros registrados aún!</h4>
+        <p>Parece que no hay mascotas en tu sistema. ¡Empieza a añadir algunas!</p>
+        <hr>
+        <p class="mb-0">Usa el botón "Registrar Nuevo Perro" para comenzar.</p>
+    </div>
+    {% endif %}
+{% endblock %}
